@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <title>Upload</title>
+    <style>
+    /* 'Select File' button style*/ 
+    label.btn-default{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+    }
+    </style>
+</head>
+<body>
+    {% block content %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>Upload an image</h1>
+            <hr>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <div class="col-md-4 input-group">
+                    <p><label>Insert an image name in the text box, select a file from the system and upload it to the site:</label></p>
+                    <input class="form-control" type="text" name="img_name"/>
+                    <!-- Workaround to avoid browser native language naming dependence for file type input item -->
+                    <div class="input-group-btn">
+                        <label for="image" class="btn btn-default">Select File...</label>
+                        <input id="image" name="image" type="file" class="btn btn-default" style="visibility:hidden;"/>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
